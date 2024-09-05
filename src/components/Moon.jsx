@@ -1,16 +1,14 @@
-import {motion} from 'framer-motion'
-const Moon = () => {
+import { motion } from 'framer-motion';
+
+const Moon = ({ x, controls }) => {
   return (
     <motion.div
       className='w-32 h-32 rounded-full bg-slate-300'
-      initial={{ x: 0 }} 
-      animate={{ x: -100 }} 
-      transition={{ duration: 2 }} 
+      style={{ x }} // Apply the motion value directly
+      animate={controls} // Control the animation with controls
     >
     </motion.div>
+  );
+};
 
-    
-  )
-}
-
-export default Moon
+export default Moon;
