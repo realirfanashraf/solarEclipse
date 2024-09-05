@@ -6,7 +6,7 @@ import { useAnimation, useMotionValue } from "framer-motion";
 const SolarEclipse = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  const x = useMotionValue(0); // Default to 0, adjust based on current state
+  const x = useMotionValue(0); 
   const controls = useAnimation();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const SolarEclipse = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Update viewportWidth on component mount
+    handleResize(); 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -24,8 +24,8 @@ const SolarEclipse = () => {
   const startAnimation = () => {
     const currentPosition = x.get();
     controls.start({
-      x: [currentPosition, -viewportWidth], // Animate from current position to off-screen left
-      transition: { duration: 5, repeat: Infinity, repeatType: 'loop' },
+      x: [currentPosition, -viewportWidth], 
+      transition: { duration: 20, repeat: Infinity, repeatType: 'loop' },
     });
     setIsAnimating(true);
   };
@@ -37,12 +37,12 @@ const SolarEclipse = () => {
 
   const resetAnimation = () => {
     controls.stop();
-    x.set(0); // Reset position if needed
+    x.set(0);
     setIsAnimating(false);
   };
 
   return (
-    <div className="grid grid-cols-3 w-screen h-screen bg-slate-500 overflow-hidden">
+    <div className="grid grid-cols-3 w-screen h-screen bg-blue-400 ">
       <div></div>
       <div className="flex items-center justify-start">
         <Sun />
