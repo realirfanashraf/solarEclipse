@@ -19,7 +19,6 @@ const Sun = forwardRef((props, ref) => {
     radial-gradient(circle at 80% 20%, ${coronaColor}, transparent 60%)
   `;
 
-  // Use `useTransform` to map overlap values to glare opacity
   const glareOpacity = useTransform(overlap, [0.7, 0.9], [0, 1]);
 
   return (

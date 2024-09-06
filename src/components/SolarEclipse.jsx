@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Moon from "./Moon.jsx";
 import Sun from "./Sun.jsx";
 import { useAnimation, useMotionValue, motion, useTransform } from "framer-motion";
+import AnimationControls from "./AnimationControls.jsx";
 
 const SolarEclipse = () => {
 
@@ -14,7 +15,7 @@ const SolarEclipse = () => {
 
   const overlap = useMotionValue(0)
 
-  const background = useTransform(overlap, [0, 1], ["#87CEEB", "#000"]);
+  const background = useTransform(overlap, [0, 1], ["#4682B4", "#001F3F"]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,8 +72,10 @@ const SolarEclipse = () => {
   const resetAnimation = () => {
     controls.stop();
     x.set(0);
+    overlap.set(0); 
     setIsAnimating(false);
   };
+  
 
   return (
     <motion.div className="grid grid-cols-3 w-screen h-screen "
@@ -84,13 +87,7 @@ const SolarEclipse = () => {
       <div className="flex items-center justify-start">
         <Moon ref={moonRef} x={x} controls={controls} overlap={overlap} />
       </div>
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-4">
-        <div className="flex space-x-4">
-          <button className="px-4 py-2 text-white rounded" onClick={startAnimation}>Start</button>
-          <button className="px-4 py-2 text-white rounded" onClick={pauseAnimation}>Pause</button>
-          <button className="px-4 py-2 text-white rounded" onClick={resetAnimation}>Reset</button>
-        </div>
-      </div>
+      <AnimationControls onStart={startAnimation} onPause={pauseAnimation} onReset={resetAnimation} />
     </motion.div>
   );
 };
