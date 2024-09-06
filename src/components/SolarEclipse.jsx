@@ -12,9 +12,7 @@ const SolarEclipse = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const x = useMotionValue(0);
   const controls = useAnimation();
-
   const overlap = useMotionValue(0)
-
   const background = useTransform(overlap, [0, 1], ["#4682B4", "#001F3F"]);
 
   useEffect(() => {
@@ -56,7 +54,6 @@ const SolarEclipse = () => {
     const currentPosition = x.get();
     const moveDistance = viewportWidth * 0.6;
     const duration = viewportWidth < 768 ? 40 : 60;
-
     controls.start({
       x: [currentPosition, -moveDistance],
       transition: { duration: duration, repeat: Infinity, repeatType: 'loop' },
@@ -72,10 +69,10 @@ const SolarEclipse = () => {
   const resetAnimation = () => {
     controls.stop();
     x.set(0);
-    overlap.set(0); 
+    overlap.set(0);
     setIsAnimating(false);
   };
-  
+
 
   return (
     <motion.div className="grid grid-cols-3 w-screen h-screen "
