@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
+import { forwardRef } from 'react'
 
-const Moon = ({ x, controls }) => {
+const Moon = forwardRef(({ x, controls }, ref) => {
   return (
     <motion.div
+    ref={ref}
       className="relative w-32 h-32 rounded-full overflow-hidden"
       style={{
         x,
@@ -48,6 +50,8 @@ const Moon = ({ x, controls }) => {
       ></div>
     </motion.div>
   )
-}
+})
+
+Moon.displayName = 'Moon'
 
 export default Moon
