@@ -39,9 +39,16 @@ const Sun = forwardRef((props, ref) => {
       </motion.div>
       
       <motion.div
-        className="absolute top-0 left-0 w-16 h-16"
+        className="absolute top-0 left-0 w-16 h-16 transition-opacity duration-[2000ms] ease-in-out"
         style={{ opacity: showGlare ? glareOpacity : 0 }}
-        transition={{ duration: 0.1}} 
+        transition={{ duration: 0.1 }}
+      >
+        <Glare />
+      </motion.div>
+      <motion.div
+        className="absolute bottom-0 right-0 w-16 h-16 transition-opacity duration-[1500ms] ease-in-out"
+        style={{ opacity: !showGlare ? glareOpacity : 0 }}
+        transition={{ duration: 0.1 }}
       >
         <Glare />
       </motion.div>
