@@ -5,7 +5,7 @@ import Chromosphere from './sunComponents/Chromosphere.jsx';
 import Glare from './sunComponents/Glare.jsx';
 
 const Sun = forwardRef((props, ref) => {
-  const { overlap } = props;  
+  const { overlap , showGlare} = props;  
 
   const baseColor = useMotionValue('#ffdf00');
   const glowColor = useTransform(baseColor, color => `${color}80`);
@@ -18,11 +18,11 @@ const Sun = forwardRef((props, ref) => {
     radial-gradient(circle at 20% 80%, ${coronaColor}, transparent 60%),
     radial-gradient(circle at 80% 20%, ${coronaColor}, transparent 60%)
   `;
-
-  const glareOpacity = useTransform(overlap, [0.7, 0.9], [0, 1]);
+  
+  const glareOpacity = useTransform(overlap, [0.8, 0.9], [0, 1]);
 
   return (
-    <div className="relative w-32 h-32">
+    <div className="relative w-34 h-34">
       <motion.div
         ref={ref}
         className="absolute top-0 left-0 w-full h-full rounded-full overflow-hidden"
@@ -38,10 +38,10 @@ const Sun = forwardRef((props, ref) => {
         <Chromosphere />
       </motion.div>
       
-      {/* Use motion.div to control glare opacity dynamically */}
       <motion.div
-        className="absolute top-0 left-0 w-full h-full"
-        style={{ opacity: glareOpacity }}
+        className="absolute top-0 left-0 w-16 h-16"
+        style={{ opacity: showGlare ? glareOpacity : 0 }}
+        transition={{ duration: 0.1}} 
       >
         <Glare />
       </motion.div>

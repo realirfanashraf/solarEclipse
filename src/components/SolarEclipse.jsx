@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import { useAnimation, useMotionValue, motion, useTransform } from "framer-motion";
 import Moon from "./Moon.jsx";
 import Sun from "./Sun.jsx";
-import { useAnimation, useMotionValue, motion, useTransform } from "framer-motion";
 import AnimationControls from "./AnimationControls.jsx";
 
 const SolarEclipse = () => {
-
   const moonRef = useRef(null);
   const sunRef = useRef(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showGlare, setShowGlare] = useState(true)
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const x = useMotionValue(0);
   const controls = useAnimation();
   const overlap = useMotionValue(0)
-  const background = useTransform(overlap, [0, 1], ["#4682B4", "#001F3F"]);
+  const background = useTransform(overlap, [0, 0.5, 1], ['#4682B4', '#3B3C63', '#0F0F1A']);
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,7 +29,6 @@ const SolarEclipse = () => {
   }, []);
 
   useEffect(() => {
-
     const updateOverlap = () => {
       if (moonRef.current && sunRef.current) {
         const moonRect = moonRef.current.getBoundingClientRect();
@@ -39,11 +39,12 @@ const SolarEclipse = () => {
         const sunWidth = sunRect.width;
         const overlapPercentage = Math.max(0, Math.min(1, overlapWidth / sunWidth));
         overlap.set(overlapPercentage);
+        setShowGlare(moonRect.left > sunRect.left);
+
       }
     };
 
     const unsubscribe = x.on("change", updateOverlap);
-
     return () => {
       unsubscribe();
     };
@@ -73,13 +74,12 @@ const SolarEclipse = () => {
     setIsAnimating(false);
   };
 
-
   return (
     <motion.div className="grid grid-cols-3 w-screen h-screen "
       style={{ backgroundColor: background }}>
       <div></div>
       <div className="flex items-center justify-centre">
-        <Sun ref={sunRef} overlap={overlap} />
+        <Sun ref={sunRef} overlap={overlap} showGlare={showGlare} />
       </div>
       <div className="flex items-center justify-start">
         <Moon ref={moonRef} x={x} controls={controls} overlap={overlap} />
