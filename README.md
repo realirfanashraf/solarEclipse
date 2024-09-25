@@ -14,42 +14,6 @@ This project simulates a solar eclipse using React with Vite as the build tool, 
 - **Responsive Design**: Designed with TailwindCSS to be responsive across various screen sizes.
 - **Additional Effects**: Glowing effect around the Sun and subtle shadow effects during the eclipse.
 
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/solarEclipse.git
-    ```
-
-2. Navigate to the project directory:
-    ```bash
-    cd solarEclipse
-    ```
-
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-
-4. Start the development server:
-    ```bash
-    npm run dev
-    ```
-
-## Usage
-
-1. Open the app in your browser.
-2. Use the controls to start, pause, or reset the animation.
-3. Observe the solar eclipse effect as the Moon moves across the Sun.
-
-## Responsive Design
-
-The animation is styled using TailwindCSS to ensure it remains visually appealing and functional on different devices and screen sizes.
-
-## Contributing
-
-Feel free to submit issues or pull requests. Contributions to enhance the project are welcome!
-
 ## Acknowledgements
 
 - Vite for fast builds and development.
@@ -58,3 +22,8 @@ Feel free to submit issues or pull requests. Contributions to enhance the projec
 - Framer Motion for advanced animations.
 
 ---
+## Image Preview
+
+Here are preview image of the app:
+
+![Screenshot 1](./imagePreview/image1.png)
